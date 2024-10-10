@@ -14,8 +14,8 @@ def static_files(path):
 
 @socketio.on('send_message')
 def handle_send_message(data):
-    print(data)
-    socketio.emit("new_message", data)
+    print(data)  # Print the received message to the console
+    socketio.emit("new_message", data, broadcast=True)  # Broadcast the message to all connected clients
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=6003)
