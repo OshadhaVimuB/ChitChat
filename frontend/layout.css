@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('assests/background/dark.jpg');
+    background-repeat: repeat;
+}
+.chat-container {
+    width: 600px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+.header {
+    background: #ffcc00;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+}
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+.chat-box .message {
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    max-width: 80%;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    background: #e0e0e0;
+}
+.chat-box .message.self {
+    align-self: flex-end;
+    background: #b3e5fc;
+}
+.chat-box .message.alternate {
+    align-self: flex-start;
+    background: #ffc107;
+}
+.input-box {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+.input-box input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+}
+.input-box button {
+    padding: 10px 20px;
+    border: none;
+    background: #118aa8;
+    color: white;
+    font-size: 1em;
+}

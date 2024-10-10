@@ -1,0 +1,21 @@
+ <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChitChat</title>
+    <link rel="stylesheet" href="layout.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="chat-container">
+    <div class="header">Chit Chat Box</div>
+    <div class="chat-box" id="messages"></div>
+    <div class="input-box">
+        <input type="text" class="message" id="message" placeholder="Type a message">
+        <button class="send" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
