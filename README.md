@@ -23,6 +23,6 @@ run the project
 python main.py
 ```
 
-Access the project on your browser at `http://localhost:6001/`
+Access the project on your browser at `http://localhost:6003/`
 
 enjoy!
