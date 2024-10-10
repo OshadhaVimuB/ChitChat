@@ -33,3 +33,12 @@ socket.on("new_message", (data) => {
     messagesBox.innerHTML += messageHtml;
     messagesBox.scrollTop = messagesBox.scrollHeight;
 });
+
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    document.querySelector('.chat-container').classList.toggle('dark');
+    document.querySelector('.header').classList.toggle('dark');
+    document.querySelector('.chat-box').classList.toggle('dark');
+    document.querySelector('input[type="text"]').classList.toggle('dark');
+    document.querySelector('button.send').classList.toggle('dark');
+}
