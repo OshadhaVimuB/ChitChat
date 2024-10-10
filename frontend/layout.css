@@ -4,9 +4,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('assests/background/dark.jpg');
+    background: url('assests/background/light.jpg');
     background-repeat: repeat;
 }
+
 .chat-container {
     width: 600px;
     background: rgba(255, 255, 255, 0.8);
@@ -17,14 +18,7 @@ body {
     flex-direction: column;
     height: 400px;
 }
-.header {
-    background: #ffcc00;
-    padding: 15px;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #fff;
-}
+
 .chat-box {
     flex: 1;
     padding: 20px;
@@ -32,6 +26,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .chat-box .message {
     margin: 0;
     padding: 5px 10px;
@@ -41,28 +36,115 @@ body {
     align-self: flex-start;
     background: #e0e0e0;
 }
+
 .chat-box .message.self {
     align-self: flex-end;
     background: #b3e5fc;
 }
+
 .chat-box .message.alternate {
     align-self: flex-start;
     background: #ffc107;
 }
+
 .input-box {
     display: flex;
     border-top: 1px solid #ccc;
 }
-.input-box input {
+
+input[type="text"] {
     flex: 1;
     border: none;
     padding: 10px;
     font-size: 1em;
 }
-.input-box button {
+
+button.send {
     padding: 10px 20px;
     border: none;
     background: #118aa8;
     color: white;
     font-size: 1em;
+}
+
+.chat-box.dark {
+    background-color: #1f1f1f;
+}
+
+.chat-box .message.dark {
+    background: #333; 
+    color: #e0e0e0; 
+}
+
+.chat-box .message.self.dark {
+    background: #006064; 
+    color: #fff;
+}
+
+.chat-box .message.alternate.dark {
+    background: #ffa000; 
+    color: #000;
+}
+
+.input-box.dark {
+    background-color: #2c2c2c;
+    border-top: 1px solid #444; 
+}
+
+input[type="text"].dark {
+    background-color: #333;
+    color: #eee;
+}
+
+button.send.dark {
+    background: #005555; 
+}
+
+button.send.dark:hover {
+    background: #00838f;
+}
+
+.header {
+    background: #ffcc00;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+}
+
+.header .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.header.dark .theme-toggle {
+    color: #ffcc00; 
+}
+
+.header .theme-toggle:hover {
+    opacity: 0.8;
+}
+
+body.dark {
+    background: url('assests/background/dark.jpg');
+    background-repeat: repeat;
+    background-color: #121212; 
+}
+
+.chat-container.dark {
+    background: rgba(40, 40, 40, 0.9);
+}
+
+.header.dark {
+    background: #333;
+    color: #ffcc00;
 }
