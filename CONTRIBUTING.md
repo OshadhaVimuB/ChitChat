@@ -133,27 +133,42 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Oshadh
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
-### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
+### Steps to Contribute:
+1. Fork the repository.
 
--->
+2. Create an issue for new features or bug fixes:
 
-### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
+    - Go to the Issues section of the repository.
+    - Create a new issue, providing a detailed description of the feature or bug.
+    - Ask to be assigned to that issue by commenting on it.
+    - Wait for confirmation or assignment of the issue before proceeding.
+    - Sync your fork with the upstream repository to ensure you're working with the latest code:
 
--->
+```bash
+git remote add upstream https://github.com/ORIGINAL_OWNER/REPOSITORY_NAME.git
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
+3. Create a new branch for your feature or fix:
 
-## Styleguides
-### Commit Messages
-<!-- TODO
+```bash
+git checkout -b feature-name
+```
+4. Make your changes and commit them:
 
--->
+```bash
+git commit -m "Add some feature"
+```
+5. Push your branch to your fork:
 
-## Join The Project Team
-<!-- TODO -->
+```bash
+git push origin feature-name
+```
+6. Create a Pull Request (PR):
 
-<!-- omit in toc -->
-## Attribution
-This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
+- Go to your fork on GitHub.
+- Click on the Compare & Pull Request button.
+- In the PR description, reference the issue you're addressing using the format Closes #ISSUE_NUMBER.
+- Ensure the maintainers review your PR and provide any necessary feedback.
+
