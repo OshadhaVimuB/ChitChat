@@ -27,14 +27,16 @@
         document.querySelector('.chat-box').classList.toggle('dark');
         document.querySelector('input[type="text"]').classList.toggle('dark');
         document.querySelector('button.send').classList.toggle('dark');
+        
         const themeToggle = document.getElementById('theme-toggle');
         if (document.body.classList.contains('dark')) {
-            themeToggle.innerHTML = '&#x1F319;'; 
+            themeToggle.innerHTML = '&#x1F319;'; // Moon icon
         } else {
-            themeToggle.innerHTML = '&#x1F31E;'; 
+            themeToggle.innerHTML = '&#x1F31E;'; // Sun icon
         }
     }
 </script>
+
 <script src="script.js"></script>
 </body>
 </html>
