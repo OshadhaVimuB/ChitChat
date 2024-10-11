@@ -88,7 +88,11 @@ ChitChat comes with a built-in Dark Mode feature. Simply click the Dark Mode tog
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request after reading [CONTRIBTUING.md](CONTRIBTUING.md) file.
+Contributions are welcome! Please feel free to submit a Pull Request after reading [Contributing Steps](./CONTRIBTUING.md) file.
+
+## 🤝 Code of Conduct
+
+We are committed to fostering a welcoming and inclusive community. Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) to understand the behavior we expect from all participants in the ChitChat project.
 
 ## 📜 License
 
