@@ -1,42 +1,39 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ChitChat</title>
-    <link rel="stylesheet" href="layout.css">
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<div class="chat-container">
-    <div class="header">
+    <link rel="stylesheet" href="layout.css" />
+    <script
+      src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="header">
         Chit Chat Box
-        <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">&#x1F31E;</button> <!-- Sun icon -->
-    </div>
-    <div class="chat-box" id="messages"></div>
-    <div class="input-box">
-        <input type="text" class="message" id="message" placeholder="Type a message">
+        <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
+                <path d="M21 12.79A9 9 0 1 1 12.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+        </button>
+      </div>
+      <div class="chat-box" id="messages"></div>
+      <div class="input-box">
+        <input
+          type="text"
+          class="message"
+          id="message"
+          placeholder="Type a message"
+        />
         <button class="send" onclick="sendMessage()">Send</button>
+      </div>
     </div>
-</div>
-<script>
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-        document.querySelector('.chat-container').classList.toggle('dark');
-        document.querySelector('.header').classList.toggle('dark');
-        document.querySelector('.chat-box').classList.toggle('dark');
-        document.querySelector('input[type="text"]').classList.toggle('dark');
-        document.querySelector('button.send').classList.toggle('dark');
-        
-        const themeToggle = document.getElementById('theme-toggle');
-        if (document.body.classList.contains('dark')) {
-            themeToggle.innerHTML = '&#x1F319;'; // Moon icon
-        } else {
-            themeToggle.innerHTML = '&#x1F31E;'; // Sun icon
-        }
-    }
-</script>
 
-<script src="script.js"></script>
-</body>
+      
+
+    <script src="script.js"></script>
+  </body>
 </html>
