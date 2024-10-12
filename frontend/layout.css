@@ -22,11 +22,12 @@ body {
 .chat-box {
   flex: 1;
   padding: 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
+  background-color: #f9f9f9;
 }
 
 .chat-box::-webkit-scrollbar {
@@ -85,6 +86,30 @@ input {
 .input-box {
   display: flex;
   border-top: 1px solid #ccc;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  font-size: 1em;
+  border-radius: 0;
+  outline: none;
+}
+
+.input-box button.send:hover {
+  color: #005555;
+}
+
+.feather-send {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5px;
+}
+
+/* Add a hover effect */
+button.send:hover .feather-send {
+  transform: scale(1.1);
 }
 
 input[type="text"] {
@@ -147,12 +172,12 @@ button.send:hover {
   transform: scale(1.05);
 }
 .header {
-  background: #ffcc00;
+  background-color: #118aa8;
+  color: white;
   padding: 15px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
-  color: #fff;
   position: relative;
 }
 
@@ -180,6 +205,12 @@ body.dark {
   background: url("assests/background/dark.jpg");
   background-repeat: repeat;
   background-color: #121212;
+}
+
+.chat-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .chat-container.dark {
