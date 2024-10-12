@@ -16,7 +16,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    height: 400px;
+    height: 671px;
 }
 
 .chat-box {
@@ -25,6 +25,43 @@ body {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f1f1f1; 
+}
+
+
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px; 
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px; 
+}
+
+/* Dark mode scrollbar styles */
+body.dark .chat-box::-webkit-scrollbar-thumb {
+    background-color: #444; 
+}
+
+body.dark .chat-box::-webkit-scrollbar-track {
+    background: #333;
+}
+
+
+
+
+body.dark .chat-box {
+    scrollbar-color: #444 #333; 
 }
 
 .chat-box .message {
@@ -46,7 +83,9 @@ body {
     align-self: flex-start;
     background: #ffc107;
 }
-
+input {
+    height: 55px;
+}
 .input-box {
     display: flex;
     border-top: 1px solid #ccc;
@@ -60,11 +99,13 @@ input[type="text"] {
 }
 
 button.send {
+    width: 123px;
     padding: 10px 20px;
     border: none;
     background: #118aa8;
     color: white;
     font-size: 1em;
+    cursor: pointer;
 }
 
 .chat-box.dark {
@@ -97,13 +138,18 @@ input[type="text"].dark {
 }
 
 button.send.dark {
+    cursor: pointer;
     background: #005555; 
 }
 
 button.send.dark:hover {
     background: #00838f;
+    transform: scale(1.05); 
 }
-
+button.send:hover{
+    background: #00838f;
+    transform: scale(1.05); 
+}
 .header {
     background: #ffcc00;
     padding: 15px;
