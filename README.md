@@ -2,8 +2,6 @@
 
 A simple yet powerful Chat application built with HTML, CSS, JavaScript, and Flask.
 
-![ChitChat Logo](https://via.placeholder.com/150?text=ChitChat)
-
 ## 🌟 Features
 
 - Real-time messaging
