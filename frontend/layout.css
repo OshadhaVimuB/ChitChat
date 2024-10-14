@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: url("assests/background/light.jpg");
@@ -280,4 +281,127 @@ body.dark {
 
 .logout-button:hover {
   background-color: #d32f2f;
+}
+footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0; /* Maintain compact padding */
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.footer-container {
+  max-width: 900px; /* Increased max width for a wider footer */
+  margin: 0 auto; /* Center the footer */
+  padding: 0 20px; /* Slightly increased side padding */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 10px; /* Padding remains for spacing */
+  border-bottom: 1px solid #444;
+}
+
+.footer-logo {
+  flex: 1 1 100%; /* Make the logo full width */
+  text-align: center; /* Center logo */
+  margin-bottom: 10px; /* Space below the logo */
+}
+
+.footer-logo h3 {
+  font-size: 24px; /* Slightly larger font size for visibility */
+  color: #ff6600;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+
+.footer-column {
+  margin: 20px 15px; /* Increased margin for spacing between columns */
+  flex: 1; /* Allow columns to grow evenly */
+  text-align: center; /* Center text in columns */
+}
+
+.footer-column h4 {
+  font-size: 18px; /* Maintain a consistent header size */
+  margin-bottom: 10px; /* Space below headers */
+  color: #ff6600;
+  text-transform: uppercase; /* Added for styling */
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px; /* Font size for links */
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #ff6600;
+  text-decoration: underline; /* Underline effect on hover */
+}
+
+/* Footer Bottom Styles */
+.footer-bottom {
+  text-align: center;
+  padding-top: 10px; /* Space above bottom section */
+  color: #bbb;
+}
+
+.footer-bottom .heart {
+  color: red;
+}
+
+.footer-bottom p {
+  margin: 5px 0; /* Margins for text */
+  font-size: 12px; /* Font size for footer bottom text */
+}
+
+/* Social Media Icons */
+.social-icons {
+  margin-top: 10px; /* Space above social icons */
+}
+
+.social-icons a {
+  color: #bbb;
+  text-decoration: none;
+  margin: 0 10px; /* Margin between icons */
+  font-size: 20px; /* Icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff6600;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+  }
+
+  .footer-column {
+    margin: 10px 0; /* Margin for smaller screens */
+  }
 }
