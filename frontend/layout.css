@@ -18,7 +18,9 @@ body {
   display: flex;
   flex-direction: column;
   height: 671px;
+  margin-top: 50px; /* Add this line for top margin */
 }
+
 
 .chat-box {
   flex: 1;
