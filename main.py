@@ -27,26 +27,66 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
+        
+        # Server-side validation
+        if not username:
+            flash('Username is required.')
+            return render_template('login.html')
+        
+        if not password:
+            flash('Password is required.')
+            return render_template('login.html')
+        
         if username in users and check_password_hash(users[username], password):
             session['username'] = username
             return redirect(url_for('index'))
         else:
-            flash('Invalid username or password.')
+            flash('Invalid username or password. Please try again.')
+            
     return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
+        
+        # Server-side validation
+        if not username:
+            flash('Username is required.')
+            return render_template('signup.html')
+        
+        if len(username) < 3:
+            flash('Username must be at least 3 characters long.')
+            return render_template('signup.html')
+        
+        if len(username) > 20:
+            flash('Username must be less than 20 characters long.')
+            return render_template('signup.html')
+        
+        if not username.replace('_', '').isalnum():
+            flash('Username can only contain letters, numbers, and underscores.')
+            return render_template('signup.html')
+        
+        if not password:
+            flash('Password is required.')
+            return render_template('signup.html')
+        
+        if len(password) < 6:
+            flash('Password must be at least 6 characters long.')
+            return render_template('signup.html')
+        
         if username in users:
-            flash('Username already exists.')
-        else:
-            users[username] = generate_password_hash(password)
-            flash('Sign-up successful. Please login.')
-            return redirect(url_for('login'))
+            flash('Username already exists. Please choose a different one.')
+            return render_template('signup.html')
+        
+        # Create user
+        users[username] = generate_password_hash(password)
+        flash('Account created successfully! Please sign in.')
+        return redirect(url_for('login'))
+        
     return render_template('signup.html')
 
 @app.route('/logout')

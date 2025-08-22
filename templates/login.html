@@ -8,18 +8,161 @@
   </head>
   <body>
     <div class="auth-container">
-      <h2>Login</h2>
-      <form method="POST" action="/login">
-        <input type="text" name="username" placeholder="Username" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
+      <div class="auth-header">
+        <div class="auth-icon">💬</div>
+        <h2>Welcome to ChitChat</h2>
+        <p class="auth-subtitle">Sign in to continue chatting</p>
+      </div>
+      
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for message in messages %}
+              <div class="alert alert-error">
+                ⚠️ {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="/login" id="loginForm" novalidate>
+        <div class="input-group">
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input 
+              type="text" 
+              name="username" 
+              id="username"
+              placeholder="Username" 
+              required 
+              autocomplete="username"
+              aria-label="Username"
+            />
+          </div>
+          <div class="input-error" id="username-error"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input 
+              type="password" 
+              name="password" 
+              id="password"
+              placeholder="Password" 
+              required 
+              autocomplete="current-password"
+              aria-label="Password"
+            />
+            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+              <span id="toggleIcon">👁️</span>
+            </button>
+          </div>
+          <div class="input-error" id="password-error"></div>
+        </div>
+
+        <button type="submit" class="auth-btn" id="loginBtn">
+          <span class="btn-text">Sign In</span>
+          <span class="btn-spinner" style="display: none;">⏳</span>
+        </button>
       </form>
-      <p>Don't have an account? <a href="/signup">Sign up</a></p>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="/signup" class="auth-link">Create one</a></p>
+      </div>
     </div>
+
+    <script>
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById('toggleIcon');
+        
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.textContent = '🙈';
+        } else {
+          input.type = 'password';
+          icon.textContent = '👁️';
+        }
+      }
+
+      function showError(inputId, message) {
+        const errorElement = document.getElementById(inputId + '-error');
+        const inputWrapper = document.querySelector(`#${inputId}`).closest('.input-wrapper');
+        
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        inputWrapper.classList.add('error');
+      }
+
+      function clearError(inputId) {
+        const errorElement = document.getElementById(inputId + '-error');
+        const inputWrapper = document.querySelector(`#${inputId}`).closest('.input-wrapper');
+        
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+        inputWrapper.classList.remove('error');
+      }
+
+      function validateForm() {
+        let isValid = true;
+        
+        // Clear previous errors
+        clearError('username');
+        clearError('password');
+        
+        // Username validation
+        const username = document.getElementById('username').value.trim();
+        if (!username) {
+          showError('username', 'Username is required');
+          isValid = false;
+        } else if (username.length < 3) {
+          showError('username', 'Username must be at least 3 characters');
+          isValid = false;
+        }
+        
+        // Password validation
+        const password = document.getElementById('password').value;
+        if (!password) {
+          showError('password', 'Password is required');
+          isValid = false;
+        } else if (password.length < 6) {
+          showError('password', 'Password must be at least 6 characters');
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        if (!validateForm()) {
+          e.preventDefault();
+          return;
+        }
+        
+        // Show loading state
+        const btn = document.getElementById('loginBtn');
+        const btnText = btn.querySelector('.btn-text');
+        const spinner = btn.querySelector('.btn-spinner');
+        
+        btn.disabled = true;
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+      });
+
+      // Real-time validation
+      document.getElementById('username').addEventListener('input', function() {
+        if (this.value.trim()) {
+          clearError('username');
+        }
+      });
+
+      document.getElementById('password').addEventListener('input', function() {
+        if (this.value) {
+          clearError('password');
+        }
+      });
+    </script>
   </body>
 </html>
