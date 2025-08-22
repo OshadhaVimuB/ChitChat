@@ -8,18 +8,208 @@
   </head>
   <body>
     <div class="auth-container">
-      <h2>Sign Up</h2>
-      <form method="POST" action="/signup">
-        <input type="text" name="username" placeholder="Username" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Sign Up</button>
+      <div class="auth-header">
+        <div class="auth-icon">💬</div>
+        <h2>Join ChitChat</h2>
+        <p class="auth-subtitle">Create your account to start chatting</p>
+      </div>
+      
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for message in messages %}
+              <div class="alert {{ 'alert-success' if 'successful' in message else 'alert-error' }}">
+                {{ '✅' if 'successful' in message else '⚠️' }} {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="/signup" id="signupForm" novalidate>
+        <div class="input-group">
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input 
+              type="text" 
+              name="username" 
+              id="username"
+              placeholder="Username" 
+              required 
+              autocomplete="username"
+              aria-label="Username"
+            />
+          </div>
+          <div class="input-error" id="username-error"></div>
+          <div class="input-hint">Username must be 3-20 characters long</div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input 
+              type="password" 
+              name="password" 
+              id="password"
+              placeholder="Password" 
+              required 
+              autocomplete="new-password"
+              aria-label="Password"
+            />
+            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+              <span id="toggleIcon">👁️</span>
+            </button>
+          </div>
+          <div class="input-error" id="password-error"></div>
+          <div class="input-hint">Password must be at least 6 characters</div>
+        </div>
+
+        <div class="password-strength" id="passwordStrength" style="display: none;">
+          <div class="strength-text">Password strength: <span id="strengthLabel">Weak</span></div>
+          <div class="strength-bar">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+        </div>
+
+        <button type="submit" class="auth-btn" id="signupBtn">
+          <span class="btn-text">Create Account</span>
+          <span class="btn-spinner" style="display: none;">⏳</span>
+        </button>
       </form>
-      <p>Already have an account? <a href="/login">Login</a></p>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="/login" class="auth-link">Sign in</a></p>
+      </div>
     </div>
+
+    <script>
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById('toggleIcon');
+        
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.textContent = '🙈';
+        } else {
+          input.type = 'password';
+          icon.textContent = '👁️';
+        }
+      }
+
+      function showError(inputId, message) {
+        const errorElement = document.getElementById(inputId + '-error');
+        const inputWrapper = document.querySelector(`#${inputId}`).closest('.input-wrapper');
+        
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        inputWrapper.classList.add('error');
+      }
+
+      function clearError(inputId) {
+        const errorElement = document.getElementById(inputId + '-error');
+        const inputWrapper = document.querySelector(`#${inputId}`).closest('.input-wrapper');
+        
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+        inputWrapper.classList.remove('error');
+      }
+
+      function checkPasswordStrength(password) {
+        const strengthElement = document.getElementById('passwordStrength');
+        const strengthLabel = document.getElementById('strengthLabel');
+        const strengthFill = document.getElementById('strengthFill');
+        
+        if (password.length === 0) {
+          strengthElement.style.display = 'none';
+          return 0;
+        }
+        
+        strengthElement.style.display = 'block';
+        
+        let score = 0;
+        if (password.length >= 6) score++;
+        if (password.match(/[a-z]/)) score++;
+        if (password.match(/[A-Z]/)) score++;
+        if (password.match(/[0-9]/)) score++;
+        if (password.match(/[^a-zA-Z0-9]/)) score++;
+        
+        const strength = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+        const colors = ['#ff4757', '#ff6b35', '#ffa502', '#2ed573', '#20bf6b'];
+        const widths = ['20%', '40%', '60%', '80%', '100%'];
+        
+        const level = Math.min(score, 4);
+        strengthLabel.textContent = strength[level];
+        strengthFill.style.width = widths[level];
+        strengthFill.style.backgroundColor = colors[level];
+        
+        return score;
+      }
+
+      function validateForm() {
+        let isValid = true;
+        
+        // Clear previous errors
+        clearError('username');
+        clearError('password');
+        
+        // Username validation
+        const username = document.getElementById('username').value.trim();
+        if (!username) {
+          showError('username', 'Username is required');
+          isValid = false;
+        } else if (username.length < 3) {
+          showError('username', 'Username must be at least 3 characters');
+          isValid = false;
+        } else if (username.length > 20) {
+          showError('username', 'Username must be less than 20 characters');
+          isValid = false;
+        } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+          showError('username', 'Username can only contain letters, numbers, and underscores');
+          isValid = false;
+        }
+        
+        // Password validation
+        const password = document.getElementById('password').value;
+        if (!password) {
+          showError('password', 'Password is required');
+          isValid = false;
+        } else if (password.length < 6) {
+          showError('password', 'Password must be at least 6 characters');
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+        if (!validateForm()) {
+          e.preventDefault();
+          return;
+        }
+        
+        // Show loading state
+        const btn = document.getElementById('signupBtn');
+        const btnText = btn.querySelector('.btn-text');
+        const spinner = btn.querySelector('.btn-spinner');
+        
+        btn.disabled = true;
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+      });
+
+      // Real-time validation
+      document.getElementById('username').addEventListener('input', function() {
+        if (this.value.trim()) {
+          clearError('username');
+        }
+      });
+
+      document.getElementById('password').addEventListener('input', function() {
+        if (this.value) {
+          clearError('password');
+          checkPasswordStrength(this.value);
+        }
+      });
+    </script>
   </body>
 </html>
